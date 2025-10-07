@@ -1,0 +1,225 @@
+{
+    "backbone": "resnet50_xgb",
+    "timestamp": "20251007_115307",
+    "profiling": {
+        "training_time_sec": 17.22,
+        "training_time_min": 0.29,
+        "current_ram_MB": 904.32,
+        "model_size_MB": 0.29
+    },
+    "results": {
+        "train": {
+            "accuracy": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "report": {
+                "0": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 1157.0
+                },
+                "1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 188.0
+                },
+                "2": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 162.0
+                },
+                "3": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 371.0
+                },
+                "accuracy": 1.0,
+                "macro avg": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 1878.0
+                },
+                "weighted avg": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 1878.0
+                }
+            },
+            "confusion_matrix": [
+                [
+                    1157,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    188,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    162,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    371
+                ]
+            ]
+        },
+        "val": {
+            "accuracy": 0.9920212765957447,
+            "precision": 0.9921709496177581,
+            "recall": 0.9920212765957447,
+            "f1": 0.992074035059192,
+            "report": {
+                "0": {
+                    "precision": 0.9956709956709957,
+                    "recall": 0.9913793103448276,
+                    "f1-score": 0.9935205183585313,
+                    "support": 232.0
+                },
+                "1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 38.0
+                },
+                "2": {
+                    "precision": 0.9393939393939394,
+                    "recall": 0.96875,
+                    "f1-score": 0.9538461538461539,
+                    "support": 32.0
+                },
+                "3": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 74.0
+                },
+                "accuracy": 0.9920212765957447,
+                "macro avg": {
+                    "precision": 0.9837662337662338,
+                    "recall": 0.9900323275862069,
+                    "f1-score": 0.9868416680511714,
+                    "support": 376.0
+                },
+                "weighted avg": {
+                    "precision": 0.9921709496177581,
+                    "recall": 0.9920212765957447,
+                    "f1-score": 0.992074035059192,
+                    "support": 376.0
+                }
+            },
+            "confusion_matrix": [
+                [
+                    230,
+                    0,
+                    2,
+                    0
+                ],
+                [
+                    0,
+                    38,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    31,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    74
+                ]
+            ]
+        },
+        "test": {
+            "accuracy": 0.9920318725099602,
+            "precision": 0.9926958831341302,
+            "recall": 0.9920318725099602,
+            "f1": 0.9921792221289883,
+            "report": {
+                "0": {
+                    "precision": 1.0,
+                    "recall": 0.9870967741935484,
+                    "f1-score": 0.9935064935064936,
+                    "support": 155.0
+                },
+                "1": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 25.0
+                },
+                "2": {
+                    "precision": 0.9166666666666666,
+                    "recall": 1.0,
+                    "f1-score": 0.9565217391304348,
+                    "support": 22.0
+                },
+                "3": {
+                    "precision": 1.0,
+                    "recall": 1.0,
+                    "f1-score": 1.0,
+                    "support": 49.0
+                },
+                "accuracy": 0.9920318725099602,
+                "macro avg": {
+                    "precision": 0.9791666666666666,
+                    "recall": 0.9967741935483871,
+                    "f1-score": 0.987507058159232,
+                    "support": 251.0
+                },
+                "weighted avg": {
+                    "precision": 0.9926958831341302,
+                    "recall": 0.9920318725099602,
+                    "f1-score": 0.9921792221289883,
+                    "support": 251.0
+                }
+            },
+            "confusion_matrix": [
+                [
+                    153,
+                    0,
+                    2,
+                    0
+                ],
+                [
+                    0,
+                    25,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    22,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    49
+                ]
+            ]
+        }
+    }
+}
