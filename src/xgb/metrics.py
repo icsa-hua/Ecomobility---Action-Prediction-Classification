@@ -41,7 +41,7 @@ class MetricsEvaluator:
             "model_size_MB": round(os.path.getsize(self.save_path) / (1024 ** 2), 2)
         }
 
-        # --- Τελική δομή JSON όπως στα PyTorch metrics ---
+        # --- JSON ---
         all_metrics = {
             "backbone": backbone,
             "timestamp": timestamp,
