@@ -1,7 +1,7 @@
 # 🛴 Ecomobility — Behavior Cloning Model
 
-This repository implements a **Behavior Cloning** and **Reinforcement Learning** framework for autonomous e-scooter navigation within smart city environments.  
-The codebase integrates **deep visual feature extraction (ResNet-50)** with **XGBoost** or neural policy networks for decision-making, enabling imitation-based learning from human driving demonstrations.
+This repository implements a **Behavior Cloning** framework for Reinforcement Learning–based autonomous e-scooter navigation in smart city environments.
+The codebase integrates **deep visual feature extraction (ResNet-50 or Foundation Models)** with XGBoost or neural policy networks for decision-making, enabling imitation-based learning from human driving demonstrations.
 
 ---
 
