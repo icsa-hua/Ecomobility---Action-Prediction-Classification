@@ -50,4 +50,42 @@ source ecomobility_env/bin/activate
 
 # 3️⃣ Install dependencies
 pip install -r requirements.txt
+```
 
+## 🧩 Running Experiments
+
+### 🔹 Neural Policy (PyTorch-based)
+
+To train and evaluate the neural imitation policy, navigate to the **`src/without_xgb/`** directory and specify the desired backbone:
+
+```bash
+cd src/without_xgb
+
+# Example runs
+python main.py --backbone resnet50
+python main.py --backbone efficient_b0
+python main.py --backbone clip
+python main.py --backbone mobilenet_v3_large
+python main.py --backbone dinov
+```
+Each run will automatically:
+
+- Select the appropriate model backbone  
+- Train (`PolicyNet`) using supervised learning  
+- Save weights and metrics with timestamps (`bc_<backbone>_<timestamp>.pth`)  
+
+### 🔹 XGBoost Policy
+
+To train a lightweight policy using XGBoost on top of precomputed visual features, go to the **`src/xgb/`** directory and execute:
+
+```bash
+cd src/xgb
+python main.py
+```
+
+
+This pipeline:
+
+- Loads visual embeddings extracted by pretrained CNNs  
+- Trains an XGBoost classifier on action labels  
+- Evaluates model performance using the same unified metrics module  
