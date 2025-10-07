@@ -38,8 +38,8 @@ Clone the repository and prepare the environment:
 
 ```bash
 # 1️⃣ Clone repository
-git clone https://github.com/<username>/Ecomobility---Behavior-Cloning-Model.git
-cd Ecomobility---Behavior-Cloning-Model
+git clone https://github.com/icsa-hua/Ecomobility---Behavior_Cloning_Model.git
+cd Ecomobility---Behavior_Cloning_Model
 
 # 2️⃣ Create virtual environment
 python -m venv ecomobility_env
