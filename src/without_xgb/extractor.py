@@ -9,10 +9,11 @@ import matplotlib.pyplot as plt
 import torchvision
 
 try:
-    import timm  # για foundation models (EfficientNet, ConvNeXt κλπ)
+    import timm  # for EfficientNet, ConvNeXt, etc.
 except ImportError:
     timm = None
     print("⚠️ timm not installed. Run: pip install timm open_clip_torch")
+
 
 class PolicyNet(nn.Module):
     def __init__(self, num_actions, backbone="resnet50", device=None, image_dir="dataset/images/"):
@@ -21,7 +22,7 @@ class PolicyNet(nn.Module):
         self.image_dir = image_dir
         self.backbone_name = backbone.lower()
 
-        # 1️⃣ Επιλογή backbone
+        # 1️⃣ Backbone selection
         self.backbone, feat_dim, preprocess = self._load_backbone(self.backbone_name)
 
         # 2️⃣ Policy head
@@ -31,17 +32,18 @@ class PolicyNet(nn.Module):
             nn.Linear(512, num_actions)
         )
 
-        # 3️⃣ Προεπεξεργασία εικόνων
+        # 3️⃣ Image preprocessing
         self.transform = preprocess or transforms.Compose([
-            transforms.Resize((224,224)),
+            transforms.Resize((224, 224)),
             transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485,0.456,0.406], std=[0.229,0.224,0.225])
+            transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                 std=[0.229, 0.224, 0.225])
         ])
 
         self.to(self.device)
 
     # --------------------------------------------
-    # Επιλογή backbone
+    # Load backbone network
     # --------------------------------------------
     def _load_backbone(self, name):
         if name == "resnet50":
@@ -67,7 +69,7 @@ class PolicyNet(nn.Module):
             backbone = model.visual
             feat_dim = model.visual.output_dim
             return backbone, feat_dim, preprocess
-        
+
         elif name == "dinov2":
             backbone = torch.hub.load('facebookresearch/dinov2', 'dinov2_vitb14')
             feat_dim = 768
@@ -76,7 +78,7 @@ class PolicyNet(nn.Module):
                 transforms.CenterCrop(518),
                 transforms.ToTensor(),
                 transforms.Normalize(mean=(0.485, 0.456, 0.406),
-                                    std=(0.229, 0.224, 0.225))
+                                     std=(0.229, 0.224, 0.225))
             ])
             return backbone, feat_dim, preprocess
 
@@ -86,7 +88,7 @@ class PolicyNet(nn.Module):
         return backbone, feat_dim, None
 
     # --------------------------------------------
-    # Forward & utils
+    # Forward pass
     # --------------------------------------------
     def forward(self, x):
         feats = self.backbone(x)
@@ -96,6 +98,9 @@ class PolicyNet(nn.Module):
         logits = self.policy(feats)
         return logits
 
+    # --------------------------------------------
+    # Inference (single image)
+    # --------------------------------------------
     def predict(self, image_path):
         img = Image.open(image_path).convert('RGB')
         tensor = self.transform(img).unsqueeze(0).to(self.device)
@@ -106,13 +111,18 @@ class PolicyNet(nn.Module):
             action = torch.argmax(probs, dim=1).item()
         return action
 
+    # --------------------------------------------
+    # Supervised behavior cloning training
+    # --------------------------------------------
     def fit_supervised(self, dataset_df, num_epochs=10, lr=1e-4):
-        """Behavior Cloning training με logging χρόνου και μνήμης"""
+        """
+        Behavior Cloning training with runtime and memory logging.
+        """
         optimizer = torch.optim.Adam(self.parameters(), lr=lr)
         criterion = nn.CrossEntropyLoss()
 
         start_time = time.time()
-        start_mem = psutil.Process(os.getpid()).memory_info().rss  # ακριβέστερο από virtual_memory()
+        start_mem = psutil.Process(os.getpid()).memory_info().rss  # more accurate than virtual_memory()
 
         self.train()
         for epoch in range(num_epochs):
@@ -131,21 +141,21 @@ class PolicyNet(nn.Module):
                 optimizer.step()
 
                 total_loss += loss.item()
-            print(f"Loss: {total_loss/len(dataset_df):.4f}")
+            print(f"Loss: {total_loss / len(dataset_df):.4f}")
 
         end_time = time.time()
         end_mem = psutil.Process(os.getpid()).memory_info().rss
 
-        # Μετρήσεις
+        # Metrics
         training_time_sec = end_time - start_time
         memory_used_MB = (end_mem - start_mem) / (1024 ** 2)
         model_size_MB = os.path.getsize(f"bc_{self.backbone_name}.pth") / (1024 ** 2) if os.path.exists(f"bc_{self.backbone_name}.pth") else 0
 
-        print(f"🕒 Training time: {training_time_sec/60:.2f} min")
+        print(f"🕒 Training time: {training_time_sec / 60:.2f} min")
         print(f"💾 Memory used (RAM): {memory_used_MB:.2f} MB")
         print(f"📦 Model size: {model_size_MB:.2f} MB")
 
-        # Επιστροφή stats για metrics.json
+        # Return stats for metrics.json
         return {
             "training_time_sec": round(training_time_sec, 2),
             "training_time_min": round(training_time_sec / 60, 2),
