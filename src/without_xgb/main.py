@@ -39,7 +39,7 @@ print(f"✅ Random seed fixed to {seed} for reproducibility")
 # -----------------------------
 # 3️⃣ Dataset loading
 # -----------------------------
-prep = DatasetPrep("dataset/art_labels.csv")
+prep = DatasetPrep("../dataset/art_labels.csv")
 splits = prep.prepare()
 
 # -----------------------------
