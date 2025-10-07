@@ -9,13 +9,11 @@ The codebase integrates **deep visual feature extraction (ResNet-50 or Foundatio
 
 | Component | Specification |
 |------------|---------------|
-| **Operating System** | Windows 11 Pro 64-bit |
 | **CPU** | Intel Core i7-12700KF (12 cores / 20 threads, 3.6–5.0 GHz) |
 | **RAM** | 32 GB DDR4 |
 | **GPU** | NVIDIA GeForce RTX 3060 (12 GB GDDR6 VRAM) |
 | **CUDA Version** | 12.9 |
 | **Python Version** | 3.11 |
-| **PyTorch Version** | 2.2+ (with CUDA backend) |
 
 ---
 
