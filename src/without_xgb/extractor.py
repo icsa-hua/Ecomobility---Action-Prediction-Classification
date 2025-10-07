@@ -12,11 +12,11 @@ try:
     import timm  # for EfficientNet, ConvNeXt, etc.
 except ImportError:
     timm = None
-    print("⚠️ timm not installed. Run: pip install timm open_clip_torch")
+    print("⚠️ timm not installed. Run: pip install timm open_clip_torch")dataset
 
 
 class PolicyNet(nn.Module):
-    def __init__(self, num_actions, backbone="resnet50", device=None, image_dir="dataset/images/"):
+    def __init__(self, num_actions, backbone="resnet50", device=None, image_dir="../dataset/images/"):
         super().__init__()
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.image_dir = image_dir
