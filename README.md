@@ -48,6 +48,12 @@ source ecomobility_env/bin/activate
 
 # 3️⃣ Install dependencies
 pip install -r requirements.txt
+
+# ⚙️ — Install PyTorch and dependencies
+If your system has an NVIDIA GPU with CUDA 12.9, install the GPU-accelerated versions:
+pip install torch==2.5.1+cu121 torchvision==0.20.1+cu121 torchaudio==2.5.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+
+Otherwise, install the Torch version that is compatible with your GPU.
 ```
 
 ## 🧩 Running Experiments
